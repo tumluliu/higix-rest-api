@@ -6,7 +6,11 @@
 
 * featuresets
 * rasters
+* datasets (originally called data)
 * maps
+* models
+* plugins
+* st-datasets
 * 
 
 ### Affilicated resources
@@ -38,4 +42,5 @@
 ## Documentation 
 
 ## Implementation based on, perhaps Flask-restful
+
 
