@@ -102,3 +102,21 @@ _sample response in JSON format:_
 * page_size (may be renamed to limit, default to 10)
 * order_by
 * flow_id
+
+## Search
+
+### Global search
+
+/search?q=keyword1+keyword2
+
+_sample URL:_  
+`http://api.higix.org/v1/search?q=烈士公园+长沙` 
+
+### Scoped search
+
+/featuresets?q=changsha
+
+For example, search in all vector datasets with keyword changsha.
+
+_sample URL:_  
+`http://api.higix.org/v1/featuresets?q=changsha`
