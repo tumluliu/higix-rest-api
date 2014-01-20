@@ -47,9 +47,9 @@ For each single featureset, users may ask for partial results filtered by either
 
     * querystring parameters
         * cols (may be renamed to fields), where, order_by, page, page_size
-		* srid, feature_type, feature_count, shape_point_count, minx, miny, maxx, maxy
-	* response structure
-		* sample response in JSON format
+				* srid, feature_type, feature_count, shape_point_count, minx, miny, maxx, maxy
+		* response structure
+				* sample response in JSON format
 
 		```javascript
 		{
@@ -71,7 +71,6 @@ For each single featureset, users may ask for partial results filtered by either
 		    'data': 'http://api.higix.org/v1/featuresets/1234/data.json'
 		    }
 		}
-		```
 
 * raster
 	* querystring parameters
@@ -98,14 +97,13 @@ For each single featureset, users may ask for partial results filtered by either
           'min': -123.4,
           'nodata': -32768,
           'bands': 3,
-          'unique': 'http://api.higix.org/v1/rasters/2345/unique_values.json',          
+          'unique': 'http://api.higix.org/v1/rasters/2345/unique_values.json',
           'histogram': 'http://api.higix.org/v1/rasters/2345/histogram.json'
           'etc.': '...'
 			},
 			'preview': 'http://api.higix.org/v1/rasters/2345/preview.png',
 			'data': 'http://api.higix.org/v1/rasters/2345/data.tif'			
-		}
-		```		
+		}		
  
 * st-dataset
 
