@@ -47,8 +47,8 @@ For each single featureset, users may ask for partial results filtered by either
 	* response structure
 		* JSON
 		* default
+
 		```javascript
-				
 		{
 		    'metadata': {
 		        'app_id': '1234',
@@ -80,8 +80,8 @@ For each single featureset, users may ask for partial results filtered by either
 		* band_no (may be renamed to band)
 	* response structure
 		* JSON
-		```javascript
 		
+    ```javascript
 		{
 			'metadata': {...
 			},
