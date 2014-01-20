@@ -1,6 +1,6 @@
 # Designing plan of RESTful Web API for higix
 
-关于本次重新设计的基本原则，应该从API的用户，也就是Web app developers的角度出去去考虑。他们希望如何最自然流畅的去取用资源，如何舒服的操纵资源，如何能从资源的一种表达方式顺畅的跳转到另一种表达方式，如何从一个资源跳转到另一个资源，等等。如果能有效的解决了这些问题，那么这个API才算是能用的。
+关于本次重新设计的基本原则，应该从API的用户，也就是Web app developers的角度出发去考虑。他们希望如何最自然流畅的去取用资源，如何舒服的操纵资源，如何能从资源的一种表达方式顺畅的跳转到另一种表达方式，如何从一个资源跳转到另一个资源，等等。如果能有效的解决了这些问题，那么这个API才算是能用的。
 
 ## Resource list
 
@@ -23,8 +23,8 @@
 * models
 * plugins
 * programs/tools
-
     在plugin和program关系还没完全理清的情况下又乱入了一个名为task的交互式小工具，真是乱上加乱。
+
 * public querystring parameters for these resources
 	* user_id, TODO: this should be substituted by unified user identity (e.g. @auth.login_required in Flask.RESTful)
 	* name_keywords, keywords for full-text search
@@ -49,7 +49,7 @@
         * cols (may be renamed to fields), where, order_by, page, page_size
 		* srid, feature_type, feature_count, shape_point_count, minx, miny, maxx, maxy
 		* response structure  
-		    _sample response in JSON format _
+		  _sample response in JSON format_
         		    
         ```javascript
         {
@@ -64,6 +64,7 @@
                 'maxx': 180.0,
                 'maxy': 90.0,
                 'fields': ['fid', 'name', 'level', 'description', 'geom'],
+                'geometry_column': 'geom',
                 'feature_count': 9527,
                 'etc.': '...'
             },
