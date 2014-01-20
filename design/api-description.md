@@ -9,6 +9,7 @@
 #### Resource groups
 
 * datasets (originally called data)
+
 在这个层次上到底应该提供哪些一般性的服务接口，这个需要对现有业务仔细归纳，并且对将来可能的扩展变化进行合理假设之后才能确定。而且这个位置将来一定是会有扩展的，比如增加对新的数据模型的支持，包括网络模型、拓扑模型等等。怎么设计才是最容易扩展的。
 	* querystring parameters
 		* box (why not bbox?), geographic bounding box as parts of the filter, in the form of [minx, miny, maxx, maxy]
@@ -22,6 +23,7 @@
 * models
 * plugins
 * programs/tools
+
 在plugin和program关系还没完全理清的情况下又乱入了一个名为task的交互式小工具，真是乱上加乱。
 * public querystring parameters for these resources
 	* user_id, TODO: this should be substituted by unified user identity (e.g. @auth.login_required in Flask.RESTful)
@@ -40,37 +42,34 @@
 #### Single resource
 * dataset
 * featureset
+
 For each single featureset, users may ask for partial results filtered by either query conditions or fields. But how do users know what fields does the dataset have? Such information should be contained in the default result.
+
     * querystring parameters
         * cols (may be renamed to fields), where, order_by, page, page_size
 		* srid, feature_type, feature_count, shape_point_count, minx, miny, maxx, maxy
 	* response structure
-		* JSON
-		* default
+		* sample response in JSON format
 
 		```javascript
 		{
 		    'metadata': {
-		        'app_id': '1234',
+		        'app_id': 1234,
 		        'name': 'Sample roads',
 		        'author': 'lliu',
 		        'org': 'dbrg',
 		        'srid': '900913',
-		        'fields': ['fid', 'name', 'level', 'description'],
+            'minx': -180.0,
+            'miny': -90.0,
+            'maxx': 180.0,
+            'maxy': 90.0,
+		        'fields': ['fid', 'name', 'level', 'description', 'geom'],
 		        'feature_count': 9527,
 		        'etc.': '...'
 		    },
-		    'preview': 'an http link to the thumbnail image',
-		    'data': [{
-		        'format': 'GeoJSON',
-		        'link': 'http link to the default page of GeoJSON expression'
-		    }, {
-		        'format': 'ESRI Shapefile',
-		        'link': 'download link to the zip package of ESRI Shapefile'
-		    }, {
-		        'format': 'etc',
-		        'link': 'download or expression address'
-		    }]
+		    'preview': 'http://api.higix.org/v1/featuresets/1234/preview.png',
+		    'data': 'http://api.higix.org/v1/featuresets/1234/data.json'
+		    }
 		}
 		```
 
@@ -79,21 +78,35 @@ For each single featureset, users may ask for partial results filtered by either
 		* keys (may be renamed to fields), including min, max, unique, nodata, raw_minx (why raw here?), raw_miny, raw_maxx, raw_maxy, and format (or alt) is necessary
 		* band_no (may be renamed to band)
 	* response structure
-		* JSON
+		* sample response in JSON format
 		
     ```javascript
 		{
-			'metadata': {...
+			'metadata': {
+          'app_id': 2345,
+          'name': 'Sample raster',
+          'author': 'ayang',
+          'org': 'dbrg',
+          'srid': '4326',
+          'minx': -180.0,
+          'miny': -90.0,
+          'maxx': 180.0,
+          'maxy': 90.0,
+          'width': 1024,
+          'height': 768,
+          'max': 8848.8,
+          'min': -123.4,
+          'nodata': -32768,
+          'bands': 3,
+          'unique': 'http://api.higix.org/v1/rasters/2345/unique_values.json',          
+          'histogram': 'http://api.higix.org/v1/rasters/2345/histogram.json'
+          'etc.': '...'
 			},
-			'preview': 'An http link to the thumbnail image',
-			'data': {
-				'download': 'An http link to the download position',
-				'format': 'GeoTiff'
-			}
+			'preview': 'http://api.higix.org/v1/rasters/2345/preview.png',
+			'data': 'http://api.higix.org/v1/rasters/2345/data.tif'			
 		}
-		```
-		
-		* Default 
+		```		
+ 
 * st-dataset
 
 
