@@ -40,21 +40,60 @@
 #### Single resource
 * dataset
 * featureset
+For each single featureset, users may ask for partial results filtered by either query conditions or fields. But how do users know what fields does the dataset have? Such information should be contained in the default result.
     * querystring parameters
         * cols (may be renamed to fields), where, order_by, page, page_size
 		* srid, feature_type, feature_count, shape_point_count, minx, miny, maxx, maxy
 	* response structure
 		* JSON
 		* default
+		```javascript
+				
+		{
+		    'metadata': {
+		        'app_id': '1234',
+		        'name': 'Sample roads',
+		        'author': 'lliu',
+		        'org': 'dbrg',
+		        'srid': '900913',
+		        'fields': ['fid', 'name', 'level', 'description'],
+		        'feature_count': 9527,
+		        'etc.': '...'
+		    },
+		    'preview': 'an http link to the thumbnail image',
+		    'data': [{
+		        'format': 'GeoJSON',
+		        'link': 'http link to the default page of GeoJSON expression'
+		    }, {
+		        'format': 'ESRI Shapefile',
+		        'link': 'download link to the zip package of ESRI Shapefile'
+		    }, {
+		        'format': 'etc',
+		        'link': 'download or expression address'
+		    }]
+		}
+		```
 
 * raster
 	* querystring parameters
 		* keys (may be renamed to fields), including min, max, unique, nodata, raw_minx (why raw here?), raw_miny, raw_maxx, raw_maxy, and format (or alt) is necessary
 		* band_no (may be renamed to band)
 	* response structure
-	* JSON
-{'metadata': {...}, 'preview': 'An http link to the thumbnail image', 'data': {'download': 'An http link to the download position', 'format': 'GeoTiff'}}
-	* Default 
+		* JSON
+		```javascript
+		
+		{
+			'metadata': {...
+			},
+			'preview': 'An http link to the thumbnail image',
+			'data': {
+				'download': 'An http link to the download position',
+				'format': 'GeoTiff'
+			}
+		}
+		```
+		
+		* Default 
 * st-dataset
 
 
